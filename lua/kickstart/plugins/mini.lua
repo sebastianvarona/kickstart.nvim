@@ -20,6 +20,18 @@ return {
       -- Delete buffers without messing up window layout
       require('mini.bufremove').setup()
 
+      -- Indent scope with smooth animations
+      require('mini.indentscope').setup {
+        symbol = '│',
+        options = {
+          try_as_border = true,
+        },
+        draw = {
+          animation = require('mini.indentscope').gen_animation.quadratic({ duration = 15, unit = 'step' }),
+          delay = 100,
+        },
+      }
+
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
