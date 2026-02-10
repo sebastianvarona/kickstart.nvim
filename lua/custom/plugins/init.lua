@@ -10,6 +10,21 @@ return {
   },
 
   {
+    'vim-test/vim-test',
+    ft = { 'ruby', 'eruby' },
+    config = function()
+      vim.g['test#strategy'] = 'neovim'
+      vim.g['test#ruby#rspec#executable'] = 'bundle exec rspec'
+      vim.g['test#ruby#rspec#options'] = { '--format', 'documentation' }
+    end,
+    keys = {
+      { '<leader>tt', ':TestNearest<CR>', desc = 'Run nearest test' },
+      { '<leader>tf', ':TestFile<CR>', desc = 'Run test file' },
+      { '<leader>ts', ':TestSuite<CR>', desc = 'Run test suite' },
+    },
+  },
+
+  {
     'tpope/vim-rails',
     ft = { 'ruby', 'eruby' },
   },
