@@ -221,6 +221,13 @@ return {
         -- ts_ls = {},
         --
 
+        ruby_lsp = {
+          init_options = {
+            formatter = 'standard',
+            linters = { 'standard' },
+          },
+        },
+
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -253,6 +260,9 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'ruby_lsp', -- Ruby language server
+        'erb-lint', -- ERB linter
+        'standardrb', -- Ruby style guide linter and formatter
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
