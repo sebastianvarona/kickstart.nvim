@@ -8,6 +8,16 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+-- Buffer keymaps
+vim.keymap.set('n', '<leader>bb', '<cmd>e #<CR>', { desc = 'Switch to other buffer' })
+vim.keymap.set('n', '[b', '<cmd>bprevious<CR>', { desc = 'Previous buffer' })
+vim.keymap.set('n', ']b', '<cmd>bnext<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '[B', '<cmd>bfirst<CR>', { desc = 'First buffer' })
+vim.keymap.set('n', ']B', '<cmd>blast<CR>', { desc = 'Last buffer' })
+vim.keymap.set('n', '<leader>bd', '<lua>require("mini.bufremove").delete(0, false)<CR>', { desc = '[D]elete buffer' })
+vim.keymap.set('n', '<leader>bD', '<lua>require("mini.bufremove").delete(0, true)<CR>', { desc = '[D]elete buffer (force)' })
+vim.keymap.set('n', '<leader>bo', '<cmd>%bd|e#|bd#<CR>', { desc = 'Delete other buffers' })
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.

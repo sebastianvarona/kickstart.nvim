@@ -218,8 +218,25 @@ return {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
-        --
+        ts_ls = {
+          settings = {
+            typescript = {
+              tsserver = {
+                enable = true,
+                maxTsServerMemory = 8192,
+              },
+            },
+          },
+        },
+
+        tailwindcss = {
+          filetypes = { 'typescriptreact', 'javascriptreact', 'typescript', 'javascript', 'html', 'css', 'eruby' },
+          root_dir = function(fname)
+            local root_pattern = require('lspconfig.util').root_pattern
+            return root_pattern('tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js', 'postcss.config.ts', 'package.json', 'Gemfile', 'config/application.rb')(fname)
+              or root_pattern('.git')(fname)
+          end,
+        },
 
         ruby_lsp = {
           init_options = {
@@ -263,6 +280,11 @@ return {
         'ruby_lsp', -- Ruby language server
         'erb-lint', -- ERB linter
         'standardrb', -- Ruby style guide linter and formatter
+        'prettier', -- JavaScript/TypeScript formatter
+        'prettierd', -- Prettier daemon (faster)
+        'eslint', -- JavaScript/TypeScript linter
+        'eslint_d', -- ESLint daemon (faster)
+        'tailwindcss-language-server', -- Tailwind CSS LSP
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

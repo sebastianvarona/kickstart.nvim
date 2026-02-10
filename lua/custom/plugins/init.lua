@@ -64,13 +64,17 @@ return {
     opts = {
       notify_on_error = false,
       format_on_save = {
-        timeout_ms = 500,
+        timeout_ms = 3000,
         lsp_fallback = true,
       },
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'black' },
         ruby = { 'standardrb' },
+        typescript = { 'prettier' },
+        typescriptreact = { 'prettier' },
+        javascript = { 'prettier' },
+        javascriptreact = { 'prettier' },
       },
     },
   },
@@ -80,8 +84,54 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
       { '<leader>o', ':Oil<CR>', desc = 'Open parent directory' },
+      { '-', ':Oil<CR>', desc = 'Open parent directory' },
+      { '_', ':Oil --float<CR>', desc = 'Open parent directory (float)' },
     },
-    opts = {},
+    opts = {
+      columns = {
+        'icon',
+      },
+      buf_options = {
+        buflisted = false,
+        bufhidden = 'hide',
+      },
+      win_options = {
+        wrap = false,
+        signcolumn = 'no',
+        cursorcolumn = false,
+        foldcolumn = '0',
+        spell = false,
+        list = false,
+        conceallevel = 3,
+        concealcursor = 'nvic',
+      },
+      delete_to_trash = true,
+      skip_confirm_for_simple_edits = true,
+      prompt_save_on_select_new_entry = true,
+      cleanup_delay_ms = 2000,
+      keymaps_help = {
+        border = 'rounded',
+      },
+      view_options = {
+        show_hidden = false,
+        is_always_hidden = function(name, _)
+          return name == '..' or name == '.git'
+        end,
+        sort = {
+          { 'type', 'asc' },
+          { 'name', 'asc' },
+        },
+      },
+      float = {
+        padding = 2,
+        max_width = 80,
+        max_height = 0,
+        border = 'rounded',
+        win_options = {
+          winblend = 10,
+        },
+      },
+    },
   },
 
   {
