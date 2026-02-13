@@ -45,6 +45,8 @@ require('lazy').setup({
 
   require 'kickstart.plugins.mini',
 
+  require 'kickstart.plugins.lualine',
+
   require 'kickstart.plugins.treesitter',
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the

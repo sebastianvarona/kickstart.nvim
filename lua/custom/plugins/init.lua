@@ -193,4 +193,72 @@ return {
     'christoomey/vim-tmux-navigator',
     lazy = false,
   },
+
+  {
+    'akinsho/toggleterm.nvim',
+    version = '*',
+    opts = {
+      open_mapping = [[<C-t>]],
+      direction = 'float',
+      float_opts = {
+        border = 'curved',
+      },
+    },
+  },
+
+  {
+    'folke/noice.nvim',
+    event = 'VeryLazy',
+    opts = {
+      lsp = {
+        override = {
+          ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+          ['vim.lsp.util.stylize_markdown'] = true,
+          ['cmp.entry.get_documentation'] = true,
+        },
+      },
+      presets = {
+        bottom_search = true,
+        command_palette = true,
+        long_message_to_split = true,
+        inc_rename = false,
+        lsp_doc_border = false,
+      },
+    },
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'rcarriga/nvim-notify',
+    },
+  },
+
+  {
+    'christopher-francisco/tmux-status.nvim',
+    lazy = true,
+    opts = {
+      window = {
+        separator = '│',
+        text = 'name',
+        icon_zoom = '',
+        icon_mark = '',
+        icon_bell = '',
+        icon_mute = '',
+        icon_activity = '',
+      },
+      session = {
+        icon = '',
+      },
+      datetime = {
+        icon = '',
+        format = '%H:%M',
+      },
+      colors = {
+        window_active = '#8aadf4',
+        window_inactive = '#5b6078',
+        window_inactive_recent = '#363a4f',
+        session = '#a6da95',
+        datetime = '#cad3f5',
+      },
+      manage_tmux_status = false,
+    },
+  },
 }
