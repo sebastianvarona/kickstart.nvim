@@ -95,6 +95,13 @@ return {
       { '<leader>o', ':Oil<CR>', desc = 'Open parent directory' },
       { '-', ':Oil<CR>', desc = 'Open parent directory' },
       { '_', ':Oil --float<CR>', desc = 'Open parent directory (float)' },
+      {
+        '<leader>oh',
+        function()
+          require('oil').toggle_hidden()
+        end,
+        desc = 'Toggle hidden files',
+      },
     },
     opts = {
       columns = {

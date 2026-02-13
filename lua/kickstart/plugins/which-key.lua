@@ -65,6 +65,7 @@ return {
         { '<leader>g', group = '[G]it' },
         { '<leader>d', group = '[D]atabase' },
         { '<leader>b', group = '[B]uffer' },
+        { '<leader>o', group = '[O]il' },
       },
     },
   },
