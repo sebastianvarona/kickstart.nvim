@@ -188,4 +188,9 @@ return {
     },
     opts = {},
   },
+
+  {
+    'christoomey/vim-tmux-navigator',
+    lazy = false,
+  },
 }
