@@ -1,5 +1,85 @@
 return {
   {
+    'numToStr/Comment.nvim',
+    event = 'VeryLazy',
+    opts = {
+      mapping = false,
+      toggler = {
+        line = '<leader>/',
+        block = '<leader>cb',
+      },
+      opleader = {
+        line = '<leader>/',
+        block = '<leader>cb',
+      },
+    },
+  },
+
+  {
+    'NvChad/nvim-colorizer.lua',
+    event = 'BufReadPre',
+    opts = {
+      filetypes = { '*' },
+      user_default_options = {
+        RGB = true,
+        RRGGBB = true,
+        names = true,
+        RRGGBBAA = true,
+        AARRGGBB = true,
+        rgb_fn = true,
+        hsl_fn = true,
+        css = true,
+        css_fn = true,
+        mode = 'background',
+        tailwind = true,
+        sass = { enable = true, parsers = { 'css' } },
+        virtualtext = '■',
+      },
+      buftypes = {},
+    },
+    keys = {
+      { '<leader>tc', '<cmd>ColorizerToggle<CR>', desc = '[T]oggle [C]olorizer' },
+    },
+  },
+
+  {
+    'folke/flash.nvim',
+    event = 'VeryLazy',
+    opts = {
+      modes = {
+        char = {
+          jump_labels = true,
+        },
+      },
+    },
+    keys = {
+      { 's', mode = { 'n', 'x', 'o' }, function() require('flash').jump() end, desc = 'Flash' },
+      { 'S', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter() end, desc = 'Flash Treesitter' },
+      { 'r', mode = 'o', function() require('flash').remote() end, desc = 'Remote Flash' },
+      { '<c-s>', mode = { 'c' }, function() require('flash').toggle() end, desc = 'Toggle Flash Search' },
+    },
+  },
+
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    keys = {
+      { '<leader>ha', function() require('harpoon'):list():add() end, desc = '[H]arpoon [A]dd file' },
+      { '<leader>hh', function() local h = require('harpoon') h.ui:toggle_quick_menu(h:list()) end, desc = '[H]arpoon menu' },
+      { '<leader>h1', function() require('harpoon'):list():select(1) end, desc = 'Harpoon file 1' },
+      { '<leader>h2', function() require('harpoon'):list():select(2) end, desc = 'Harpoon file 2' },
+      { '<leader>h3', function() require('harpoon'):list():select(3) end, desc = 'Harpoon file 3' },
+      { '<leader>h4', function() require('harpoon'):list():select(4) end, desc = 'Harpoon file 4' },
+      { '<C-h>1', function() require('harpoon'):list():select(1) end, desc = 'Harpoon 1' },
+      { '<C-h>2', function() require('harpoon'):list():select(2) end, desc = 'Harpoon 2' },
+      { '<C-h>3', function() require('harpoon'):list():select(3) end, desc = 'Harpoon 3' },
+      { '<C-h>4', function() require('harpoon'):list():select(4) end, desc = 'Harpoon 4' },
+    },
+    opts = {},
+  },
+
+  {
     'kdheepak/lazygit.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -13,7 +93,7 @@ return {
     'MagicDuck/grug-far.nvim',
     dependencies = { 'nvim-telescope/telescope-fzf-native.nvim' },
     keys = {
-      { '<leader>sr', ':GrugFar<CR>', desc = '[S]earch and [R]eplace' },
+      { '<leader>R', ':GrugFar<CR>', desc = 'Search and [R]eplace' },
     },
     opts = {},
   },
