@@ -33,6 +33,7 @@ return {
       },
       spec = {
         { '<leader>?', desc = 'Cheatsheet', icon = ' ' },
+        { '<leader>D', desc = 'Dashboard', icon = ' ' },
 
         { '<leader>', group = 'Leader', icon = ' ' },
         { '<leader><leader>', desc = 'Find files', icon = ' ' },
@@ -46,6 +47,7 @@ return {
 
         { '<leader>c', group = '[C]ode', icon = ' ' },
         { '<leader>cf', desc = 'Format code' },
+        { '<leader>ca', desc = 'Code actions (file)' },
 
         { '<leader>d', group = '[D]atabase', icon = ' ' },
 

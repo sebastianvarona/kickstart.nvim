@@ -1,5 +1,45 @@
 return {
   {
+    'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
+    opts = {
+      dashboard = {
+        preset = {
+          header = [[
+▄▄▄▄▄▄         ▄▄              ▄▄▄▄▄▄▄                       
+███▀▀██▄       ██  ██         █████▀▀▀ ▀▀         ██         
+███  ███ ▄█▀█▄ ██ ▀██▀▀  ▀▀█▄  ▀████▄  ██  ▄█▀█▄ ▀██▀▀ ▄█▀█▄ 
+███  ███ ██▄█▀ ██  ██   ▄█▀██    ▀████ ██  ██▄█▀  ██   ██▄█▀ 
+██████▀  ▀█▄▄▄ ██  ██   ▀█▄██ ███████▀ ██▄ ▀█▄▄▄  ██   ▀█▄▄▄ 
+          ]],
+          keys = {
+            { icon = ' ', key = 'f', desc = 'Find File', action = ':Telescope find_files' },
+            { icon = ' ', key = 'n', desc = 'New File', action = ':ene | startinsert' },
+            { icon = ' ', key = 'r', desc = 'Recent Files', action = ':Telescope oldfiles' },
+            { icon = ' ', key = 'g', desc = 'Find Text', action = ':Telescope live_grep' },
+            { icon = ' ', key = 's', desc = 'Search Config', action = ":lua require('telescope.builtin').find_files { cwd = vim.fn.stdpath 'config' }" },
+            { icon = ' ', key = 'l', desc = 'Lazy', action = ':Lazy' },
+            { icon = '󰒲 ', key = 'm', desc = 'Mason', action = ':Mason' },
+            { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
+          },
+        },
+      },
+      notifier = { enabled = true },
+    },
+    keys = {
+      {
+        '<leader>D',
+        function()
+          vim.cmd '%bd|e#|bd#'
+          Snacks.dashboard()
+        end,
+        desc = 'Dashboard',
+      },
+    },
+  },
+
+  {
     'numToStr/Comment.nvim',
     event = 'VeryLazy',
     opts = {
@@ -53,10 +93,38 @@ return {
       },
     },
     keys = {
-      { 's', mode = { 'n', 'x', 'o' }, function() require('flash').jump() end, desc = 'Flash' },
-      { 'S', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter() end, desc = 'Flash Treesitter' },
-      { 'r', mode = 'o', function() require('flash').remote() end, desc = 'Remote Flash' },
-      { '<c-s>', mode = { 'c' }, function() require('flash').toggle() end, desc = 'Toggle Flash Search' },
+      {
+        's',
+        mode = { 'n', 'x', 'o' },
+        function()
+          require('flash').jump()
+        end,
+        desc = 'Flash',
+      },
+      {
+        'S',
+        mode = { 'n', 'x', 'o' },
+        function()
+          require('flash').treesitter()
+        end,
+        desc = 'Flash Treesitter',
+      },
+      {
+        'r',
+        mode = 'o',
+        function()
+          require('flash').remote()
+        end,
+        desc = 'Remote Flash',
+      },
+      {
+        '<c-s>',
+        mode = { 'c' },
+        function()
+          require('flash').toggle()
+        end,
+        desc = 'Toggle Flash Search',
+      },
     },
   },
 
@@ -65,16 +133,77 @@ return {
     branch = 'harpoon2',
     dependencies = { 'nvim-lua/plenary.nvim' },
     keys = {
-      { '<leader>ha', function() require('harpoon'):list():add() end, desc = '[H]arpoon [A]dd file' },
-      { '<leader>hh', function() local h = require('harpoon') h.ui:toggle_quick_menu(h:list()) end, desc = '[H]arpoon menu' },
-      { '<leader>h1', function() require('harpoon'):list():select(1) end, desc = 'Harpoon file 1' },
-      { '<leader>h2', function() require('harpoon'):list():select(2) end, desc = 'Harpoon file 2' },
-      { '<leader>h3', function() require('harpoon'):list():select(3) end, desc = 'Harpoon file 3' },
-      { '<leader>h4', function() require('harpoon'):list():select(4) end, desc = 'Harpoon file 4' },
-      { '<C-h>1', function() require('harpoon'):list():select(1) end, desc = 'Harpoon 1' },
-      { '<C-h>2', function() require('harpoon'):list():select(2) end, desc = 'Harpoon 2' },
-      { '<C-h>3', function() require('harpoon'):list():select(3) end, desc = 'Harpoon 3' },
-      { '<C-h>4', function() require('harpoon'):list():select(4) end, desc = 'Harpoon 4' },
+      {
+        '<leader>ha',
+        function()
+          require('harpoon'):list():add()
+        end,
+        desc = '[H]arpoon [A]dd file',
+      },
+      {
+        '<leader>hh',
+        function()
+          local h = require 'harpoon'
+          h.ui:toggle_quick_menu(h:list())
+        end,
+        desc = '[H]arpoon menu',
+      },
+      {
+        '<leader>h1',
+        function()
+          require('harpoon'):list():select(1)
+        end,
+        desc = 'Harpoon file 1',
+      },
+      {
+        '<leader>h2',
+        function()
+          require('harpoon'):list():select(2)
+        end,
+        desc = 'Harpoon file 2',
+      },
+      {
+        '<leader>h3',
+        function()
+          require('harpoon'):list():select(3)
+        end,
+        desc = 'Harpoon file 3',
+      },
+      {
+        '<leader>h4',
+        function()
+          require('harpoon'):list():select(4)
+        end,
+        desc = 'Harpoon file 4',
+      },
+      {
+        '<C-h>1',
+        function()
+          require('harpoon'):list():select(1)
+        end,
+        desc = 'Harpoon 1',
+      },
+      {
+        '<C-h>2',
+        function()
+          require('harpoon'):list():select(2)
+        end,
+        desc = 'Harpoon 2',
+      },
+      {
+        '<C-h>3',
+        function()
+          require('harpoon'):list():select(3)
+        end,
+        desc = 'Harpoon 3',
+      },
+      {
+        '<C-h>4',
+        function()
+          require('harpoon'):list():select(4)
+        end,
+        desc = 'Harpoon 4',
+      },
     },
     opts = {},
   },

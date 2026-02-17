@@ -8,6 +8,12 @@ local function cheatsheet()
                                     KEYMAPS CHEATSHEET
 
   ════════════════════════════════════════════════════════════════════════════════
+   GENERAL
+  ═══════════════════════════════════════════════════════════════════════════════
+    <leader>D            Dashboard
+    <leader>?            Cheatsheet (this window)
+
+  ═══════════════════════════════════════════════════════════════════════════════
    NAVIGATION
   ═══════════════════════════════════════════════════════════════════════════════
     Tab / S-Tab          Next / Prev buffer
@@ -44,6 +50,7 @@ local function cheatsheet()
     gy                   Go to type definition
     grn                  Rename
     gra                  Code action
+    <leader>ca           Code actions (file diagnostics)
     <leader>cf           Format code
 
   ═══════════════════════════════════════════════════════════════════════════════
@@ -213,6 +220,11 @@ vim.keymap.set('n', '<leader>sx', '<cmd>close<CR>', { desc = 'Close split' })
 vim.keymap.set({ 'n', 'v' }, '<leader>cf', function()
   require('conform').format { async = true, lsp_fallback = true }
 end, { desc = '[C]ode [F]ormat' })
+
+-- Code actions for current file
+vim.keymap.set('n', '<leader>ca', function()
+  require('telescope.builtin').diagnostics { bufnr = 0 }
+end, { desc = '[C]ode [A]ctions (file diagnostics)' })
 
 -- Rails restart
 vim.keymap.set('n', '<leader>rr', function()
